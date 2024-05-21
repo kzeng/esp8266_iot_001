@@ -162,4 +162,5 @@ def inst_curr_raw_data():
 
 
 if __name__ == '__main__':
-    app.run()
+    # app.run()
+    app.run(host='0.0.0.0', port=55555, debug=False)
