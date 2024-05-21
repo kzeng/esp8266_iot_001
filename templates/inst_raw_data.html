@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAW DATA</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.1/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>RAW DATA</h1>
+        <!-- Your content goes here -->
+
+        <form>
+            <div class="mb-3">
+                <label for="api_key" class="form-label">APIKEY</label>
+                <input type="text" class="form-control" id="api_key" value="123456">
+            </div>
+
+            <div class="mb-3">
+                <label for="inst_name" class="form-label">RAW DATA</label>
+                <input type="text" class="form-control" id="raw_data" value="00001111">
+            </div>
+            
+            <button type="button" class="btn btn-primary" id="btn_add_inst_raw_data">Submit</button>
+        
+        </form>
+
+        <hr>        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>RAW DATA</th>
+   
+                </tr>
+            </thead>
+            <tbody>
+            
+                <!-- Loop through users and populate the table rows -->
+                {% for d in inst_raw_data %}
+                <tr>
+                    <td>{{ d.raw_data }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.1/js/bootstrap.bundle.js"></script>
+
+    <script>
+
+        $(document).ready(function() {
+            $("#btn_add_inst_raw_data").click(function() {
+                // alert("Button clicked");
+                // Get form data
+                var api_key = $('#api_key').val();
+                var raw_data = $('#raw_data').val();
+              
+
+                // Create data object
+                var data = {
+                    api_key: api_key,
+                    raw_data: raw_data,
+                
+                };
+
+                // Send AJAX POST request
+                $.ajax({
+                    url: '/inst_raw_data',
+                    type: 'POST',
+                    data: data,
+                    success: function(response) {
+                        // Handle success response
+                        // console.log(response);
+                        // Reload the page
+                        location.reload();
+                    },
+                    error: function(error) {
+                        // Handle error response
+                        console.log(error);
+                    }
+                });
+            
+            });
+        
+        });
+    </script>
+
+</body>
+</html>

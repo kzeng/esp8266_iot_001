@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.1/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>User List</h1>
+        <!-- Your content goes here -->
+        <form>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter name">
+            </div>
+            <div class="mb-3">
+                <label for="mobile" class="form-label">Mobile</label>
+                <input type="text" class="form-control" id="mobile" placeholder="Enter mobile number">
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <textarea class="form-control" id="address" rows="3" placeholder="Enter address"></textarea>
+            </div>
+            <button type="button" class="btn btn-primary" id="btn_add_user">Submit</button>
+        </form>
+
+        <hr>        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through users and populate the table rows -->
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.mobile }}</td>
+                    <td>{{ user.address }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.1/js/bootstrap.bundle.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#btn_add_user").click(function() {
+                alert("Button clicked");
+                // Get form data
+                var name = $('#name').val();
+                var mobile = $('#mobile').val();
+                var address = $('#address').val();
+
+                // Create data object
+                var data = {
+                    name: name,
+                    mobile: mobile,
+                    address: address
+                };
+
+                // Send AJAX POST request
+                $.ajax({
+                    url: '/users',
+                    type: 'POST',
+                    data: data,
+                    success: function(response) {
+                        // Handle success response
+                        // console.log(response);
+                        // Reload the page
+                        location.reload();
+                    },
+                    error: function(error) {
+                        // Handle error response
+                        console.log(error);
+                    }
+                });
+            
+            });
+        
+        });
+    </script>
+
+</body>
+</html>

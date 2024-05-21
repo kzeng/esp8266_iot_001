@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仪表记录数据</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.1/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>仪表历史记录数据</h1>
+        <!-- Your content goes here -->
+
+        <form>
+            <div class="mb-3">
+                <label for="api_key" class="form-label">APIKEY</label>
+                <input type="text" class="form-control" id="api_key" value="123456">
+            </div>
+
+            <div class="mb-3">
+                <label for="inst_name" class="form-label">仪表名称</label>
+                <input type="text" class="form-control" id="inst_name" value="inst001">
+            </div>
+            <div class="mb-3">
+                <label for="sensor_name" class="form-label">网络模块</label>
+                <input type="text" class="form-control" id="sensor_name" value="esp8266">
+            </div>
+            <div class="mb-3">
+                <label for="temp1" class="form-label">温度#1</label>
+                <input type="text" class="form-control" id="temp1" value="26.6">
+            </div>
+            <div class="mb-3">
+                <label for="humidity1" class="form-label">湿度#1</label>
+                <input type="text" class="form-control" id="humidity1" value="73.7">
+            </div>
+            <div class="mb-3">
+                <label for="temp2" class="form-label">温度#2</label>
+                <input type="text" class="form-control" id="temp2" value="26.6">
+            </div>
+            <div class="mb-3">
+                <label for="humidity2" class="form-label">湿度#2</label>
+                <input type="text" class="form-control" id="humidity2" value="73.7">
+            </div>
+            <div class="mb-3">
+                <label for="temp3" class="form-label">温度#3</label>
+                <input type="text" class="form-control" id="temp3" value="26.6">
+            </div>
+            <div class="mb-3">
+                <label for="humidity3" class="form-label">湿度#3</label>
+                <input type="text" class="form-control" id="humidity3" value="73.7">
+            </div>
+            <div class="mb-3">
+                <label for="temp4" class="form-label">温度#4</label>
+                <input type="text" class="form-control" id="temp4" value="26.6">
+            </div>
+            <div class="mb-3">
+                <label for="humidity4" class="form-label">湿度#4</label>
+                <input type="text" class="form-control" id="humidity4" value="73.7">
+            </div>
+            <button type="button" class="btn btn-primary" id="btn_add_inst_data">Submit</button>
+        
+        </form>
+
+        <hr>        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>仪表名称</th>
+                    <th>网络模块</th>
+                    <th>温度#1</th>
+                    <th>湿度#1</th>
+                    <th>温度#2</th>
+                    <th>湿度#2</th>
+                    <th>温度#3</th>
+                    <th>湿度#3</th>
+                    <th>温度#4</th>
+                    <th>湿度#4</th>
+                    <th>记录时间</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+                <!-- Loop through users and populate the table rows -->
+                {% for d in inst_data %}
+                <tr>
+                    <td>{{ d.inst_name }}</td>
+                    <td>{{ d.sensor_name }}</td>
+                    <td>{{ d.temp1 }}</td>
+                    <td>{{ d.humidity1 }}</td>
+                    <td>{{ d.temp2 }}</td>
+                    <td>{{ d.humidity2 }}</td>
+                    <td>{{ d.temp3 }}</td>
+                    <td>{{ d.humidity3 }}</td>
+                    <td>{{ d.temp4 }}</td>
+                    <td>{{ d.humidity4 }}</td>
+                    <td>{{ d.record_time }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.1/js/bootstrap.bundle.js"></script>
+
+    <script>
+
+        $(document).ready(function() {
+            $("#btn_add_inst_data").click(function() {
+                // alert("Button clicked");
+                // Get form data
+                var api_key = $('#api_key').val();
+                var inst_name = $('#inst_name').val();
+                var sensor_name = $('#sensor_name').val();
+                var temp1 = $('#temp1').val();
+                var humidity1 = $('#humidity1').val();
+                var temp2 = $('#temp2').val();
+                var humidity2 = $('#humidity2').val();
+                var temp3 = $('#temp3').val();
+                var humidity3 = $('#humidity3').val();
+                var temp4 = $('#temp4').val();
+                var humidity4 = $('#humidity4').val();
+
+                // Create data object
+                var data = {
+                    api_key: api_key,
+                    inst_name: inst_name,
+                    sensor_name: sensor_name,
+                    temp1: temp1,
+                    humidity1: humidity1,
+                    temp2: temp2,
+                    humidity2: humidity2,
+                    temp3: temp3,
+                    humidity3: humidity3,
+                    temp4: temp4,
+                    humidity4: humidity4
+                };
+
+                // Send AJAX POST request
+                $.ajax({
+                    url: '/inst_data',
+                    type: 'POST',
+                    data: data,
+                    success: function(response) {
+                        // Handle success response
+                        // console.log(response);
+                        // Reload the page
+                        location.reload();
+                    },
+                    error: function(error) {
+                        // Handle error response
+                        console.log(error);
+                    }
+                });
+            
+            });
+        
+        });
+    </script>
+
+</body>
+</html>
