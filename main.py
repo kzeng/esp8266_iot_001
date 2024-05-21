@@ -23,14 +23,14 @@ class InstData(db.Model):
     # api_key = db.Column(db.String(100))
     inst_name = db.Column(db.String(100))
     sensor_name = db.Column(db.String(100))
-    temp1 = db.Column(db.Float)
-    humidity1 = db.Column(db.Float)
-    temp2 = db.Column(db.Float)
-    humidity2 = db.Column(db.Float)
-    temp3 = db.Column(db.Float)
-    humidity3 = db.Column(db.Float)
-    temp4 = db.Column(db.Float)
-    humidity4 = db.Column(db.Float)
+    temp1 = db.Column(db.String(32))
+    humidity1 = db.Column(db.String(32))
+    temp2 = db.Column(db.String(32))
+    humidity2 = db.Column(db.String(32))
+    temp3 = db.Column(db.String(32))
+    humidity3 = db.Column(db.String(32))
+    temp4 = db.Column(db.String(32))
+    humidity4 = db.Column(db.String(32))
     record_time = db.Column(db.DateTime)
 
 
@@ -315,7 +315,7 @@ def inst_curr_raw_data():
     temp4 = dashboard_get_info1_dict["temp_4"]
     humidity4 = dashboard_get_info1_dict["hum_4"]
     record_time = datetime.datetime.now()
-    
+
     inst_data_item = InstData(inst_name=inst_name, sensor_name=sensor_name, temp1=temp1, humidity1=humidity1, temp2=temp2, humidity2=humidity2, temp3=temp3, humidity3=humidity3, temp4=temp4, humidity4=humidity4, record_time=record_time)
     db.session.add(inst_data_item)
     db.session.commit()
