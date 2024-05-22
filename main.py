@@ -106,19 +106,11 @@ def delete_user(user_id):
 # CRUD operations for User
 @app.route('/inst_data', methods=['GET'])
 def get_inst_data():
-    # page = request.args.get('page', 1, type=int)
-    # pagination = InstData.query.paginate(page, per_page=10)
-    # page = request.args.get('page', 1, type=int)
-    # pagination = InstData.query.order_by(desc(InstData.record_time)).paginate(page, per_page=100)
-    # return render_template('inst_data.html', pagination=pagination)
-
     page = request.args.get('page', 1, type=int)
-    per_page = 100
+    per_page = 50
     inst_data = InstData.query.paginate(page=page, per_page=per_page, error_out=False)    
     return render_template('inst_data.html', inst_data=inst_data)
 
-    # inst_data = InstData.query.all()
-    # return render_template('inst_data.html', inst_data=inst_data)
 
 
 @app.route('/inst_data', methods=['POST'])
