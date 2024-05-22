@@ -105,9 +105,9 @@ def delete_user(user_id):
 #-------------------------------
 # CRUD operations for User
 @app.route('/inst_data', methods=['GET'])
-def get_inst_data(page):
+def get_inst_data():
     page = request.args.get('page', 1, type=int)
-    per_page = 50
+    per_page = 5
     inst_data = InstData.query.paginate(page=page, per_page=per_page, error_out=False)    
     return render_template('inst_data.html', inst_data=inst_data)
 
