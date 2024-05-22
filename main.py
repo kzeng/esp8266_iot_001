@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 import json
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'  # Replace with your database URI
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////database.db'  # Replace with your database URI
 db = SQLAlchemy(app)
 
 
