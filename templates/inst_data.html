@@ -66,23 +66,24 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>仪表名称</th>
-                    <th>网络模块</th>
-                    <th>温度#1</th>
-                    <th>湿度#1</th>
-                    <th>温度#2</th>
-                    <th>湿度#2</th>
-                    <th>温度#3</th>
-                    <th>湿度#3</th>
-                    <th>温度#4</th>
-                    <th>湿度#4</th>
+                    <th>仪表</th>
+                    <th>网元</th>
+                    <th>温#1</th>
+                    <th>湿#1</th>
+                    <th>温#2</th>
+                    <th>湿#2</th>
+                    <th>温#3</th>
+                    <th>湿#3</th>
+                    <th>温#4</th>
+                    <th>湿#4</th>
                     <th>记录时间</th>
                 </tr>
             </thead>
             <tbody>
             
                 <!-- Loop through users and populate the table rows -->
-                {% for d in inst_data %}
+      
+                {% for d in inst_data.items %}
                 <tr>
                     <td>{{ d.inst_name }}</td>
                     <td>{{ d.sensor_name }}</td>
@@ -94,12 +95,35 @@
                     <td>{{ d.humidity3 }}</td>
                     <td>{{ d.temp4 }}</td>
                     <td>{{ d.humidity4 }}</td>
-                    <td>{{ d.record_time }}</td>
+                    <td>{{ d.record_time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
 
+        <nav>
+            <ul class="pagination">
+                {% if inst_data.has_prev %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('inst_data', page=inst_data.prev_num) }}">Previous</a>
+                    </li>
+                {% endif %}
+                {% for page_num in inst_data.iter_pages() %}
+                    <li class="page-item{% if page_num == inst_data.page %} active{% endif %}">
+                        {% if page_num %}
+                            <a class="page-link" href="{{ url_for('inst_data', page=page_num) }}">{{ page_num }}</a>
+                        {% else %}
+                            <span class="page-link">...</span>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                {% if inst_data.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('inst_data', page=inst_data.next_num) }}">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
     </div>
 
     <!-- Bootstrap JS -->

@@ -4,8 +4,9 @@ from flask import Flask, request, jsonify, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import json
 
+
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////database.db'  # Replace with your database URI
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'  # Replace with your database URI
 db = SQLAlchemy(app)
 
 
@@ -38,7 +39,6 @@ class InstRawData(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # api_key = db.Column(db.String(100))
     raw_data = db.Column(db.String(1024))
-
 
 
 with app.app_context():
@@ -106,8 +106,19 @@ def delete_user(user_id):
 # CRUD operations for User
 @app.route('/inst_data', methods=['GET'])
 def get_inst_data():
-    inst_data = InstData.query.all()
+    # page = request.args.get('page', 1, type=int)
+    # pagination = InstData.query.paginate(page, per_page=10)
+    # page = request.args.get('page', 1, type=int)
+    # pagination = InstData.query.order_by(desc(InstData.record_time)).paginate(page, per_page=100)
+    # return render_template('inst_data.html', pagination=pagination)
+
+    page = request.args.get('page', 1, type=int)
+    per_page = 100
+    inst_data = InstData.query.paginate(page=page, per_page=per_page, error_out=False)    
     return render_template('inst_data.html', inst_data=inst_data)
+
+    # inst_data = InstData.query.all()
+    # return render_template('inst_data.html', inst_data=inst_data)
 
 
 @app.route('/inst_data', methods=['POST'])
