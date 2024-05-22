@@ -108,7 +108,8 @@ def delete_user(user_id):
 def get_inst_data():
     page = request.args.get('page', 1, type=int)
     per_page = 25
-    inst_data = InstData.sort_values(by='record_time', ascending=False).query.paginate(page=page, per_page=per_page, error_out=False)  
+ 
+    inst_data = InstData.query.order_by(InstData.record_time.desc()).query.paginate(page=page, per_page=per_page, error_out=False)  
     records_count = InstData.query.count()
     return render_template('inst_data.html', inst_data=inst_data, records_count=records_count)
 
