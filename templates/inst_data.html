@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>仪表历史记录数据 &nbsp;&nbsp; {{ records_count }}</h1>
+        <h1>仪表历史记录数据 &nbsp;&nbsp; {{ records_count }}</h1> <small> 条记录</small>
         <!-- Your content goes here -->
 
         <!-- <form>
@@ -64,37 +64,131 @@
 
         <hr>        
         <table class="table">
-            <thead>
+            <thead class="table-light">
                 <tr>
                     <th>仪表</th>
                     <th>网元</th>
-                    <th>温#1</th>
-                    <th>湿#1</th>
-                    <th>温#2</th>
-                    <th>湿#2</th>
-                    <th>温#3</th>
-                    <th>湿#3</th>
-                    <th>温#4</th>
-                    <th>湿#4</th>
+
+                    <th>温度#1</th>
+                    <th>湿度#1</th>
+                    <th>目标温度#1</th>
+                    <th>温度容差#1</th>
+                    <th>目标湿度#1</th>
+                    <th>湿度容差#1</th>
+                    <th>控制模式#1</th>
+                    <th>控制策略#1</th>
+                    <th>空调保护状态#1</th>
+                    <th>控制输出状态#1</th>
+
+                    <th>温度#2</th>
+                    <th>湿度#2</th>
+                    <th>目标温度#2</th>
+                    <th>温度容差#2</th>
+                    <th>目标湿度#2</th>
+                    <th>湿度容差#2</th>
+                    <th>控制模式#2</th>
+                    <th>控制策略#2</th>
+                    <th>空调保护状态#2</th>
+                    <th>控制输出状态#2</th>
+
+                    <th>温度#3</th>
+                    <th>湿度#3</th>
+                    <th>目标温度#3</th>
+                    <th>温度容差#3</th>
+                    <th>目标湿度#3</th>
+                    <th>湿度容差#3</th>
+                    <th>控制模式#3</th>
+                    <th>控制策略#3</th>
+                    <th>空调保护状态#3</th>
+                    <th>控制输出状态#3</th>
+
+                    <th>温度#4</th>
+                    <th>湿度#4</th>
+                    <th>目标温度#4</th>
+                    <th>温度容差#4</th>
+                    <th>目标湿度#4</th>
+                    <th>湿度容差#4</th>
+                    <th>控制模式#4</th>
+                    <th>控制策略#4</th>
+                    <th>空调保护状态#4</th>
+                    <th>控制输出状态#4</th>
+
+                    <th>温度</th>
+                    <th>湿度</th>
+                    <th>目标温度</th>
+                    <th>温度容差</th>
+                    <th>目标湿度</th>
+                    <th>湿度容差</th>
+                    <th>控制模式</th>
+                    <th>控制策略</th>
+                    <th>空调保护状态</th>
+                    <th>控制输出状态</th>
+
                     <th>记录时间</th>
                 </tr>
             </thead>
+            <!-- Loop through users and populate the table rows -->
             <tbody>
-            
-                <!-- Loop through users and populate the table rows -->
-      
                 {% for d in inst_data.items %}
                 <tr>
                     <td>{{ d.inst_name }}</td>
                     <td>{{ d.sensor_name }}</td>
+
                     <td>{{ d.temp1 }}</td>
                     <td>{{ d.humidity1 }}</td>
+                    <td>{{ d.target_temp1 }}</td>
+                    <td>{{ d.control_temp1 }}</td>
+                    <td>{{ d.target_hum1 }}</td>
+                    <td>{{ d.control_hum1 }}</td>
+                    <td>{{ d.control_mode1 }}</td>
+                    <td>{{ d.control_method1 }}</td>
+                    <td>{{ d.temp_status_info1 }}</td>
+                    <td>{{ d.humi_status_info1 }}</td>
+
                     <td>{{ d.temp2 }}</td>
                     <td>{{ d.humidity2 }}</td>
+                    <td>{{ d.target_temp2 }}</td>
+                    <td>{{ d.control_temp2 }}</td>
+                    <td>{{ d.target_hum2 }}</td>
+                    <td>{{ d.control_hum2 }}</td>
+                    <td>{{ d.control_mode2 }}</td>
+                    <td>{{ d.control_method2 }}</td>
+                    <td>{{ d.temp_status_info2 }}</td>
+                    <td>{{ d.humi_status_info2 }}</td>
+
                     <td>{{ d.temp3 }}</td>
                     <td>{{ d.humidity3 }}</td>
+                    <td>{{ d.target_temp3 }}</td>
+                    <td>{{ d.control_temp3 }}</td>
+                    <td>{{ d.target_hum3 }}</td>
+                    <td>{{ d.control_hum3 }}</td>
+                    <td>{{ d.control_mode3 }}</td>
+                    <td>{{ d.control_method3 }}</td>
+                    <td>{{ d.temp_status_info3 }}</td>
+                    <td>{{ d.humi_status_info3 }}</td>
+
                     <td>{{ d.temp4 }}</td>
                     <td>{{ d.humidity4 }}</td>
+                    <td>{{ d.target_temp4 }}</td>
+                    <td>{{ d.control_temp4 }}</td>
+                    <td>{{ d.target_hum4 }}</td>
+                    <td>{{ d.control_hum4 }}</td>
+                    <td>{{ d.control_mode4 }}</td>
+                    <td>{{ d.control_method4 }}</td>
+                    <td>{{ d.temp_status_info4 }}</td>
+                    <td>{{ d.humi_status_info4 }}</td>
+
+                    <td>{{ d.temp5 }}</td>
+                    <td>{{ d.humidity5 }}</td>
+                    <td>{{ d.target_temp5 }}</td>
+                    <td>{{ d.control_temp5 }}</td>
+                    <td>{{ d.target_hum5 }}</td>
+                    <td>{{ d.control_hum5 }}</td>
+                    <td>{{ d.control_mode5 }}</td>
+                    <td>{{ d.control_method5 }}</td>
+                    <td>{{ d.temp_status_info5 }}</td>
+                    <td>{{ d.humi_status_info5 }}</td>
+
                     <td>{{ d.record_time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
                 </tr>
                 {% endfor %}
@@ -132,7 +226,7 @@
 
     <script>
 
-        $(document).ready(function() {
+  /*       $(document).ready(function() {
             $("#btn_add_inst_data").click(function() {
                 // alert("Button clicked");
                 // Get form data
@@ -182,7 +276,7 @@
             
             });
         
-        });
+        }); */
     </script>
 
 </body>
