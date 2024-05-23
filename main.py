@@ -260,8 +260,8 @@ def inst_curr_raw_data():
         if int('0x' + data_list[idx], 16) == 0:
             dashboard_get_info1_dict.update({"temp_" + str(ch) : "--" })
             dashboard_get_info1_dict.update({"hum_" + str(ch) : "--" })
-            dashboard_get_info1_dict.update({"control_mode_" + str(ch) : "hide" })
-            dashboard_get_info1_dict.update({"control_method_" + str(ch) : "hide" })
+            dashboard_get_info1_dict.update({"control_mode_" + str(ch) : "--" })
+            dashboard_get_info1_dict.update({"control_method_" + str(ch) : "--" })
 
             # dashboard_get_info1_dict.update({"air_protect_status_" + str(ch) : "hide" })
             # dashboard_get_info1_dict.update({"control_output_status_" + str(ch) : "hide" })
@@ -336,7 +336,7 @@ def inst_curr_raw_data():
                 if int('0x' + data_list[idx+17], 16) != 0:
                     dashboard_get_info1_dict.update({"accm_1" : "<i class='fa fa-circle accm1'></i>" })
                     dashboard_get_info1_dict.update({"accm_2" : "<i class='fa fa-circle accm2'></i>" })
-                    dashboard_get_info1_dict.update({"accm_3" : "<i class='fa fa-circle accm2'></i>" })
+                    dashboard_get_info1_dict.update({"acchidem_3" : "<i class='fa fa-circle accm2'></i>" })
                     dashboard_get_info1_dict.update({"accm_4" : "<i class='fa fa-circle accm2'></i>" })
                 else:
                     dashboard_get_info1_dict.update({"accm_1" : "<i class='fa fa-circle accm2'></i>" })
