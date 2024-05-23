@@ -255,8 +255,8 @@ def inst_curr_raw_data():
 
     ch = 1
     for idx in (15,33,51,69,87): #各通道数据起始地址在整个响应数据中的位置
-        temp_status_info = ''
-        humi_status_info = ''
+        temp_status_info = '--'
+        humi_status_info = '--'
         if int('0x' + data_list[idx], 16) == 0:
             dashboard_get_info1_dict.update({"temp_" + str(ch) : "--" })
             dashboard_get_info1_dict.update({"hum_" + str(ch) : "--" })
